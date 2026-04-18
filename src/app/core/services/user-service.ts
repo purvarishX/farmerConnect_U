@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { UserLogin } from '../models/classes/User.model';
 import { environment } from '../../../environments/environment';
-import { GlobalConstant } from '../constant/constant';
+import { GlobalConstant } from '../constant/Constant';
 
 @Injectable({
   providedIn: 'root',
