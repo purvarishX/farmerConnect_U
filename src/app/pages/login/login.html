@@ -1,2 +1,39 @@
-<p>login works!</p>
-{{loginUserObj.username}}
+<!-- <p>login works!</p>
+{{loginUserObj.username}} -->
+
+
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="loginWarm" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-warm">
+        <div class="modal-content">
+            <div class="modal-warm-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <span class="icon-large">🌾</span>
+                <h4>Welcome Back</h4>
+                <p>Login to your KisanBazaar account</p>
+            </div>
+            <div class="modal-warm-body">
+                <div class="mb-3">
+                    <div class="label-warm">Email Address</div>
+                    <input type="email" class="input-warm" placeholder="you@example.com" />
+                </div>
+                <div class="mb-3">
+                    <div class="label-warm">Password</div>
+                    <input type="password" class="input-warm" placeholder="••••••••" />
+                </div>
+                <div class="d-flex justify-content-between mb-4" style="font-size:0.85rem;">
+                    <label
+                        style="color:var(--brown-light);font-weight:600;display:flex;align-items:center;gap:0.4rem;cursor:pointer;"><input
+                            type="checkbox" /> Remember me</label>
+                    <a href="#" style="color:var(--harvest-gold);font-weight:700;text-decoration:none;">Forgot
+                        Password?</a>
+                </div>
+                <button class="btn-submit-warm">Login</button>
+                <div class="divider-warm"><span>New here?</span></div>
+                <div class="text-center"><a href="#"
+                        style="color:var(--harvest-gold);font-weight:700;text-decoration:none;" data-bs-dismiss="modal"
+                        data-bs-toggle="modal" data-bs-target="#registerWarm">Create Account →</a></div>
+            </div>
+        </div>
+    </div>
+</div>
