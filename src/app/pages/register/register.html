@@ -1,0 +1,54 @@
+<!-- REGISTER MODAL -->
+<div class="modal fade" id="registerWarm" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-warm">
+        <div class="modal-content">
+            <div class="modal-warm-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <span class="icon-large">🌱</span>
+                <h4>Join KisanBazaar</h4>
+                <p>Create your free account today</p>
+            </div>
+            <div class="modal-warm-body">
+                <div class="mb-3">
+                    <div class="label-warm">I am joining as</div>
+                    <div class="d-flex gap-2">
+                        <div class="role-tab active" onclick="selectRoleWarm(this)">🛒 Customer</div>
+                        <div class="role-tab" onclick="selectRoleWarm(this)">🧑‍🌾 Farmer</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="label-warm">Full Name</div><input type="text" class="input-warm"
+                        placeholder="Your full name" />
+                </div>
+                <div class="mb-3">
+                    <div class="label-warm">Email Address</div><input type="email" class="input-warm"
+                        placeholder="you@example.com" />
+                </div>
+                <div class="mb-3">
+                    <div class="label-warm">Mobile Number</div><input type="tel" class="input-warm"
+                        placeholder="+91 99999 00000" />
+                </div>
+                <div class="mb-4">
+                    <div class="label-warm">State</div><select class="input-warm">
+                        <option>Select your state</option>
+                        <option>Maharashtra</option>
+                        <option>Karnataka</option>
+                        <option>Punjab</option>
+                        <option>Kerala</option>
+                        <option>Uttar Pradesh</option>
+                        <option>Andhra Pradesh</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <div class="label-warm">Password</div><input type="password" class="input-warm"
+                        placeholder="Create a strong password" />
+                </div>
+                <button class="btn-submit-warm">Create My Account</button>
+                <div class="divider-warm"><span>Already have an account?</span></div>
+                <div class="text-center"><a href="#"
+                        style="color:var(--harvest-gold);font-weight:700;text-decoration:none;" data-bs-dismiss="modal"
+                        data-bs-toggle="modal" data-bs-target="#loginWarm">Login →</a></div>
+            </div>
+        </div>
+    </div>
+</div>
