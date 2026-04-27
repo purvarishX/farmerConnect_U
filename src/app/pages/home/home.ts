@@ -1,16 +1,26 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { CommonImports } from '../../core/constant/CommonImports';
+import { Register } from "../register/register";
+import { Header } from "../../shared/components/header/header";
+import { GlobalConstant } from '../../core/constant/Constant';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonImports.FORM_IMPORTS],
+  imports: [CommonImports.FORM_IMPORTS, Header],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 
 export class Home implements AfterViewInit {
 
-  constructor(private el: ElementRef) { }
+  showRegister: boolean = false;
+
+  constructor(private el: ElementRef) {
+    const loggedInUser = localStorage.getItem(GlobalConstant.LOCAL_LOGIN_DATA_KEY);
+    if (loggedInUser !== null) {
+      console.log(JSON.parse(loggedInUser));
+    }
+  }
 
   ngAfterViewInit() {
     this.initRiseAnimation();
@@ -71,5 +81,9 @@ export class Home implements AfterViewInit {
     const tabs = document.querySelectorAll('.role-tab');
     tabs.forEach(t => t.classList.remove('active'));
     el.classList.add('active');
+  }
+
+  showRegisterForm() {
+    this.showRegister = true;
   }
 }

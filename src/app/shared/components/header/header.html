@@ -1,31 +1,57 @@
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-warm">
-    <div class="container">
-        <a class="navbar-brand brand-warm" href="#">Kisan<span>Bazaar</span></a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navWarm"
-            style="filter:invert(1)">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navWarm">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link nav-link-warm" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-warm" href="#">Shop</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-warm" href="#">Our Farmers</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-warm" href="#">How It Works</a></li>
-                <li class="nav-item"><a class="nav-link nav-link-warm" href="#">About</a></li>
-            </ul>
-            <div class="d-flex align-items-center gap-2">
-                <button class="nav-link btn-nav-login-warm" data-bs-toggle="modal"
-                    data-bs-target="#loginWarm">Login</button>
-                <button class="nav-link btn-nav-reg-warm" data-bs-toggle="modal"
-                    data-bs-target="#registerWarm">Register</button>
-                <button
-                    style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:8px;padding:0.42rem 0.75rem;cursor:pointer;position:relative;">
-                    🛒
-                    <span
-                        style="position:absolute;top:-6px;right:-6px;background:var(--harvest-gold);color:#fff;font-size:0.6rem;font-weight:800;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;">2</span>
-                </button>
+<div class="nav-bar-body">
+    <nav class="navbar-warm-custom">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="#" class="brand-warm-nav">
+                Kisan<span>Bazaar</span>
+            </a>
+
+            <!-- Nav Links (Hidden on Mobile) -->
+            <div class="nav-links-warm">
+                <a href="#" class="nav-link-warm-item">Home</a>
+                <a href="#" class="nav-link-warm-item">Shop</a>
+                <a href="#" class="nav-link-warm-item">Our Farmers</a>
+                <a href="#" class="nav-link-warm-item">How It Works</a>
+                <a href="#" class="nav-link-warm-item">About</a>
+            </div>
+
+            <!-- Right Section -->
+            <div class="nav-right-warm">
+                <!-- STATE: LOGGED IN (default visible) -->
+                @if (loggedInUserData.userId != 0) {
+                <div class="user-section-warm" id="loggedInSection">
+                    <!-- User Info -->
+                    <div class="user-info-warm">
+                        <div class="user-avatar-warm" id="userAvatar">{{loggedInUserData.name.charAt(0)}}</div>
+                        <div class="user-details-warm">
+                            <div class="user-name-warm" id="userName">{{loggedInUserData.name}}</div>
+                            <div class="user-email-warm" id="userEmail">{{loggedInUserData.email}}</div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Button -->
+                    <button class="cart-btn-warm" title="Shopping cart" id="cartBtn">
+                        🛒
+                        <span class="cart-badge-warm" id="cartBadge">2</span>
+                    </button>
+
+                    <!-- Logout Button -->
+                    <button class="logout-btn-warm" id="logoutBtn" (click)="logout()">
+                        ← Logout
+                    </button>
+                </div>
+                }
+
+                <!-- STATE: LOGGED OUT (hidden by default) -->
+                @else {
+                <div class="auth-buttons-warm" id="loggedOutSection">
+                    <button class="btn-nav-login-warm" (click)="navigateTo('login')">Login</button>
+                    <button class="btn-nav-reg-warm" (click)="navigateTo('register')">Register</button>
+                </div>
+                }
+
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
