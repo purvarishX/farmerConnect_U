@@ -1,54 +1,135 @@
-<!-- REGISTER MODAL -->
-<div id="registerWarm">
-    <div class="modal-dialog modal-dialog-centered modal-warm">
-        <div class="modal-content">
-            <div class="modal-warm-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                <span class="icon-large">🌱</span>
-                <h4>Join KisanBazaar</h4>
-                <p>Create your free account today</p>
-            </div>
-            <div class="modal-warm-body">
-                <div class="mb-3">
-                    <div class="label-warm">I am joining as</div>
-                    <div class="d-flex gap-2">
-                        <div class="role-tab active" onclick="selectRoleWarm(this)">🛒 Customer</div>
-                        <div class="role-tab" onclick="selectRoleWarm(this)">🧑‍🌾 Farmer</div>
+<!-- REGISTER register -->
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div id="registerWarm" class="container pt-3 pb-3">
+        <div class="register-dialog register-dialog-centered register-warm">
+            <div class="register-content">
+                <div class="register-warm-header">
+                    <span class="icon-large">🌱</span>
+                    <h4>Join KisanBazaar</h4>
+                    <p>Create your free account today</p>
+                </div>
+                <div class="register-warm-body">
+                    <!-- Role Selection - Full Width -->
+                    <div class="mb-3">
+                        <div class="label-warm">I am joining as</div>
+                        <div class="d-flex gap-2">
+                            <div class="role-tab" [ngClass]="roleClicked === 'customer'? 'active': ''"
+                                (click)="selectRoleWarm('customer')">🛒 Customer</div>
+                            <div class="role-tab" [ngClass]="roleClicked === 'farmer'? 'active': ''"
+                                (click)="selectRoleWarm('farmer')">🧑‍🌾 Farmer</div>
+                        </div>
                     </div>
+
+                    <!-- Two Column Layout -->
+                    <div class="row">
+                        <!-- Left Column -->
+                        <div class="col-md-6">
+                            <!-- Full Name -->
+                            <div class="mb-3">
+                                <div class="label-warm">Full Name</div>
+                                <input type="text" class="input-warm" placeholder="Your full name"
+                                    formControlName="name" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Email Address -->
+                            <div class="mb-3">
+                                <div class="label-warm">Email Address</div>
+                                <input type="email" class="input-warm" placeholder="you@example.com"
+                                    formControlName="email" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Mobile Number -->
+                            <div class="mb-4">
+                                <div class="label-warm">Mobile Number</div>
+                                <input type="tel" class="input-warm" placeholder="+91 99999 00000"
+                                    formControlName="phone" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- State -->
+                            <div class="mb-4">
+                                <div class="label-warm">State</div>
+                                <select class="input-warm" formControlName="state" (change)="getCities($event)">
+                                    <option value="">Select your state</option>
+                                    @for (item of stateList(); track item; let i = $index) {
+                                    <option [value]="item.stateCode">{{item.stateName}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- City -->
+                            <div class="mb-4">
+                                <div class="label-warm">City</div>
+                                <select class="input-warm" formControlName="city">
+                                    <option value="">Select your city</option>
+                                    @for (city of cityList(); track city; let i = $index) {
+                                    <option [value]="city.cityName">{{city.cityName}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Address Street / Lane -->
+                            <div class="mb-4">
+                                <div class="label-warm">Address Street / Lane</div>
+                                <input type="text" class="input-warm" placeholder="Your Address street/lane"
+                                    formControlName="street" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- PIN CODE -->
+                            <div class="mb-4">
+                                <div class="label-warm">PIN CODE</div>
+                                <input type="number" class="input-warm" placeholder="Enter PIN code"
+                                    formControlName="pincode" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <div class="label-warm">Password</div>
+                                <input type="password" class="input-warm" placeholder="Create a strong password"
+                                    formControlName="password" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Confirm Password -->
+                            <div class="mb-3">
+                                <div class="label-warm">Confirm Password</div>
+                                <input type="password" class="input-warm" placeholder="Confirm your password"
+                                    formControlName="confirmPassword" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Submit Button - Full Width -->
+                    <button type="submit" class="btn-submit-warm">Create My Account</button>
+                    <div class="divider-warm"><span>Already have an account?</span></div>
+                    <div class="text-center cursor-pointer"><a
+                            style="color:var(--harvest-gold);font-weight:700;text-decoration:none;"
+                            data-bs-dismiss="register" data-bs-toggle="register" data-bs-target="#loginWarm"
+                            (click)=" goToLoginPage()">Login →</a></div>
                 </div>
-                <div class="mb-3">
-                    <div class="label-warm">Full Name</div><input type="text" class="input-warm"
-                        placeholder="Your full name" />
-                </div>
-                <div class="mb-3">
-                    <div class="label-warm">Email Address</div><input type="email" class="input-warm"
-                        placeholder="you@example.com" />
-                </div>
-                <div class="mb-3">
-                    <div class="label-warm">Mobile Number</div><input type="tel" class="input-warm"
-                        placeholder="+91 99999 00000" />
-                </div>
-                <div class="mb-4">
-                    <div class="label-warm">State</div><select class="input-warm">
-                        <option>Select your state</option>
-                        <option>Maharashtra</option>
-                        <option>Karnataka</option>
-                        <option>Punjab</option>
-                        <option>Kerala</option>
-                        <option>Uttar Pradesh</option>
-                        <option>Andhra Pradesh</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <div class="label-warm">Password</div><input type="password" class="input-warm"
-                        placeholder="Create a strong password" />
-                </div>
-                <button class="btn-submit-warm">Create My Account</button>
-                <div class="divider-warm"><span>Already have an account?</span></div>
-                <div class="text-center"><a href="#"
-                        style="color:var(--harvest-gold);font-weight:700;text-decoration:none;" data-bs-dismiss="modal"
-                        data-bs-toggle="modal" data-bs-target="#loginWarm">Login →</a></div>
             </div>
         </div>
     </div>
-</div>
+</form>

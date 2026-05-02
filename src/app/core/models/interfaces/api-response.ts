@@ -5,3 +5,8 @@ export interface ILoginResponse {
   data: UserModel,
   token: string
 }
+
+export interface IRegisterResponse {
+  message: string,
+  data: UserModel
+}

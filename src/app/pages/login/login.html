@@ -3,12 +3,11 @@
     <div class="login-dialog login-dialog-centered login-warm ">
         <div class="login-content">
             <div class="login-warm-header">
-                <button type="button" class="btn-close" data-bs-dismiss="login"></button>
                 <span class="icon-large">🌾</span>
                 <h4>Welcome Back</h4>
                 <p>Login to your KisanBazaar account</p>
             </div>
-            <form [formGroup]="loginForm">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                 <div class="login-warm-body">
                     <div class="mb-3">
                         <div class="label-warm">Email Address</div>
@@ -27,7 +26,7 @@
                         <a href="#" style="color:var(--harvest-gold);font-weight:700;text-decoration:none;">Forgot
                             Password?</a>
                     </div>
-                    <button class="btn-submit-warm" (click)="onLogin()">Login</button>
+                    <button type="submit" class="btn-submit-warm">Login</button>
                     <div class="divider-warm"><span>New here?</span></div>
                     <div class="text-center cursor-pointer"><a
                             style="color:var(--harvest-gold);font-weight:700;text-decoration:none;"

@@ -9,6 +9,7 @@ import { Router, RouterModule } from '@angular/router';
 import { GlobalConstant } from '../../core/constant/Constant';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../core/services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,11 @@ export class Login {
 
   userService = inject(UserService);
   router = inject(Router);
+  authSrv = inject(AuthService);
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
 
   constructor() {
@@ -48,7 +51,7 @@ export class Login {
 
     this.userService.loginCall(this.loggedInUser).subscribe({
       next: (result: ILoginResponse) => {
-        localStorage.setItem(GlobalConstant.LOCAL_LOGIN_DATA_KEY, JSON.stringify(result.data));
+        this.authSrv.setUserDetails(result.data);
         this.router.navigateByUrl('/home');
       },
       error: (error: any) => {

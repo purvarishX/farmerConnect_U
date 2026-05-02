@@ -13,18 +13,22 @@ import { AuthService } from '../../../core/services/auth-service'
 })
 export class Header {
   router = inject(Router);
-  authSrv = inject (AuthService)
+  authSrv = inject(AuthService)
   userName: string = '';
   isUserLoggedIn: boolean = false;
-  loggedInUserData: UserModel = new UserModel();
+  loggedInUserData: UserModel | null = null;
 
   constructor() {
     // const localData = localStorage.getItem(GlobalConstant.LOCAL_LOGIN_DATA_KEY);
     // if (localData !== null) {
     //   this.loggedInUserData = JSON.parse(localData);
     // }
-
-    this.loggedInUserData = this.authSrv.getLoginData();
+    //OR
+    // this.loggedInUserData = this.authSrv.getLoginData();
+    //OR
+    this.authSrv.user$.subscribe(user => {
+      this.loggedInUserData = user;
+    })
     console.log("HEADER loggedInUser: ", this.loggedInUserData);
   }
 
@@ -36,9 +40,9 @@ export class Header {
     }
   }
 
-  logout() {
-    this.loggedInUserData = new UserModel();
-    localStorage.removeItem(GlobalConstant.LOCAL_LOGIN_DATA_KEY);
+  logout(): void {
+    this.loggedInUserData = null;
+    this.authSrv.removeUserDetails();
     this.router.navigateByUrl('/login');
   }
 
