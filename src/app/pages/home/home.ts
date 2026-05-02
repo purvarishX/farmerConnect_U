@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject } from '@angular/core';
 import { CommonImports } from '../../core/constant/CommonImports';
 import { Register } from "../register/register";
 import { Header } from "../../shared/components/header/header";
 import { GlobalConstant } from '../../core/constant/Constant';
+import { AuthService } from '../../core/services/auth-service';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,15 @@ import { GlobalConstant } from '../../core/constant/Constant';
 export class Home implements AfterViewInit {
 
   showRegister: boolean = false;
+  authSrv = inject(AuthService);
 
   constructor(private el: ElementRef) {
-    const loggedInUser = localStorage.getItem(GlobalConstant.LOCAL_LOGIN_DATA_KEY);
-    if (loggedInUser !== null) {
-      console.log(JSON.parse(loggedInUser));
-    }
+    // const loggedInUser = localStorage.getItem(GlobalConstant.LOCAL_LOGIN_DATA_KEY);
+    // if (loggedInUser !== null) {
+    //   console.log(JSON.parse(loggedInUser));
+    // }
+
+    const loggedInUser = this.authSrv.getLoginData();
   }
 
   ngAfterViewInit() {

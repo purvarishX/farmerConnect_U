@@ -1074,3 +1074,7 @@ body::before {
         display: none;
     }
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

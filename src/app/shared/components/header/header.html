@@ -12,6 +12,7 @@
                 <a href="#" class="nav-link-warm-item">Home</a>
                 <a href="#" class="nav-link-warm-item">Shop</a>
                 <a href="#" class="nav-link-warm-item">Our Farmers</a>
+                <a class="nav-link-warm-item cursor-pointer" routerLink="/category">Categories</a>
                 <a href="#" class="nav-link-warm-item">How It Works</a>
                 <a href="#" class="nav-link-warm-item">About</a>
             </div>
@@ -23,7 +24,8 @@
                 <div class="user-section-warm" id="loggedInSection">
                     <!-- User Info -->
                     <div class="user-info-warm">
-                        <div class="user-avatar-warm" id="userAvatar">{{loggedInUserData.name.charAt(0)}}</div>
+                        <div class="user-avatar-warm" id="userAvatar">{{loggedInUserData.name.charAt(0) | uppercase}}
+                        </div>
                         <div class="user-details-warm">
                             <div class="user-name-warm" id="userName">{{loggedInUserData.name}}</div>
                             <div class="user-email-warm" id="userEmail">{{loggedInUserData.email}}</div>

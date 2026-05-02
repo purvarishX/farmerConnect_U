@@ -1,37 +1,39 @@
-<!-- LOGIN MODAL -->
-<div id="loginWarm">
-    <div class="modal-dialog modal-dialog-centered modal-warm">
-        <div class="modal-content">
-            <div class="modal-warm-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+<!-- LOGIN login -->
+<div id="loginWarm" class="container pt-3 pb-3">
+    <div class="login-dialog login-dialog-centered login-warm ">
+        <div class="login-content">
+            <div class="login-warm-header">
+                <button type="button" class="btn-close" data-bs-dismiss="login"></button>
                 <span class="icon-large">🌾</span>
                 <h4>Welcome Back</h4>
                 <p>Login to your KisanBazaar account</p>
             </div>
-            <div class="modal-warm-body">
-                <div class="mb-3">
-                    <div class="label-warm">Email Address</div>
-                    <input type="email" class="input-warm" placeholder="you@example.com"
-                        [(ngModel)]="loggedInUser.email" />
+            <form [formGroup]="loginForm">
+                <div class="login-warm-body">
+                    <div class="mb-3">
+                        <div class="label-warm">Email Address</div>
+                        <input type="email" class="input-warm" placeholder="you@example.com"
+                            formControlName="email"/>
+                    </div>
+                    <div class="mb-3">
+                        <div class="label-warm">Password</div>
+                        <input type="password" class="input-warm" placeholder="••••••••"
+                            formControlName="password"/>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4" style="font-size:0.85rem;">
+                        <label
+                            style="color:var(--brown-light);font-weight:600;display:flex;align-items:center;gap:0.4rem;cursor:pointer;"><input
+                                type="checkbox" /> Remember me</label>
+                        <a href="#" style="color:var(--harvest-gold);font-weight:700;text-decoration:none;">Forgot
+                            Password?</a>
+                    </div>
+                    <button class="btn-submit-warm" (click)="onLogin()">Login</button>
+                    <div class="divider-warm"><span>New here?</span></div>
+                    <div class="text-center cursor-pointer"><a
+                            style="color:var(--harvest-gold);font-weight:700;text-decoration:none;"
+                            data-bs-dismiss="login" (click)="goToRegisterPage()">Create Account →</a></div>
                 </div>
-                <div class="mb-3">
-                    <div class="label-warm">Password</div>
-                    <input type="password" class="input-warm" placeholder="••••••••"
-                        [(ngModel)]="loggedInUser.password" />
-                </div>
-                <div class="d-flex justify-content-between mb-4" style="font-size:0.85rem;">
-                    <label
-                        style="color:var(--brown-light);font-weight:600;display:flex;align-items:center;gap:0.4rem;cursor:pointer;"><input
-                            type="checkbox" /> Remember me</label>
-                    <a href="#" style="color:var(--harvest-gold);font-weight:700;text-decoration:none;">Forgot
-                        Password?</a>
-                </div>
-                <button class="btn-submit-warm" (click)="onLogin()">Login</button>
-                <div class="divider-warm"><span>New here?</span></div>
-                <div class="text-center"><a href="#"
-                        style="color:var(--harvest-gold);font-weight:700;text-decoration:none;"
-                        data-bs-dismiss="modal">Create Account →</a></div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
