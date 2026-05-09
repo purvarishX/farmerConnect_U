@@ -35,6 +35,9 @@ export class Login {
     this.loggedInUser = new UserLogin();
   }
 
+    //TODO: Validations, error handling - form
+
+
   onLogin(): void {
     //Object to Form
     // this.loginForm.setValue({

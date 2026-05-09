@@ -1,0 +1,99 @@
+<div class="main-container products-body">
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Products Management</h1>
+            <p class="page-subtitle">Manage product listings</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn-primary-admin" (click)="openCreateModal()">+ Add New Product</button>
+        </div>
+    </div>
+
+    <!-- PRODUCTS TABLE -->
+    <div class="table-container">
+        <table class="admin-table" id="productsTable">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Category ID</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="productsTableBody">
+                <!-- Sample data -->
+                <tr data-id="1">
+                    <td>1</td>
+                    <td>Organic Tomatoes</td>
+                    <td>1</td>
+                    <td>Fresh organic tomatoes from local farmers</td>
+                    <td><img src="https://images.pexels.com/photos/143133/pexels-photo-143133.jpeg?w=100&h=100&fit=crop"
+                            alt="Tomatoes" style="width: 40px; height: 40px; border-radius: 4px;"></td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="action-btn edit-btn" 9="editProduct(1)">Edit</button>
+                            <button class="action-btn delete-btn" (click)="deleteProduct(1)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-id="2">
+                    <td>2</td>
+                    <td>Fresh Potatoes</td>
+                    <td>1</td>
+                    <td>High-quality potatoes from certified farms</td>
+                    <td><img src="https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?w=100&h=100&fit=crop"
+                            alt="Potatoes" style="width: 40px; height: 40px; border-radius: 4px;"></td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="action-btn edit-btn" (click)="editProduct(2)">Edit</button>
+                            <button class="action-btn delete-btn" (click)="deleteProduct(2)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="productModalTitle">Add New Product</h2>
+            <button class="modal-close" (click)="closeModal('productModal')">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="alert-message" id="productAlert"></div>
+            <form id="productForm" onsubmit="handleProductSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Product Name *</label>
+                    <input type="text" class="form-control-admin" id="productName" placeholder="Enter product name"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category ID *</label>
+                    <input type="number" class="form-control-admin" id="productCategoryId"
+                        placeholder="Enter category ID" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description *</label>
+                    <textarea class="form-control-admin" id="productDescription" placeholder="Enter product description"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Image URL *</label>
+                    <input type="url" class="form-control-admin" id="productImage" placeholder="Enter image URL"
+                        required>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary-admin" (click)="closeModal('productModal')">Cancel</button>
+            <button class="btn-primary-admin">Save
+                Product</button>
+        </div>
+    </div>
+</div>

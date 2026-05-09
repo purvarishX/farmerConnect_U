@@ -12,7 +12,10 @@
                 <a href="#" class="nav-link-warm-item">Home</a>
                 <a href="#" class="nav-link-warm-item">Shop</a>
                 <a href="#" class="nav-link-warm-item">Our Farmers</a>
-                <a class="nav-link-warm-item cursor-pointer" routerLink="/category">Categories</a>
+                @if(this.loggedInUserData) {
+                <a class="nav-link-warm-item cursor-pointer" routerLink="/master">Master</a>
+                <a class="nav-link-warm-item cursor-pointer" routerLink="/product">Products</a>
+                }
                 <a href="#" class="nav-link-warm-item">How It Works</a>
                 <a href="#" class="nav-link-warm-item">About</a>
             </div>

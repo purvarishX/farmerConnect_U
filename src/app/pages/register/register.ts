@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IState } from '../../core/models/interfaces/Role.model';
 import { GlobalConstant } from '../../core/constant/Constant';
-import { ILoginResponse, IRegisterResponse } from '../../core/models/interfaces/api-response';
+import { IRegisterResponse } from '../../core/models/interfaces/api-response';
 import { UserService } from '../../core/services/user-service';
 import { UserModel } from '../../core/models/classes/User.model';
 import { AddressService } from '../../core/services/address-service';
@@ -34,6 +34,11 @@ export class Register implements OnInit {
 
   stateList = signal<IState[]>([])
   cityList = signal<{ id: string, cityName: string }[]>([]);
+
+  isRegistering = signal<boolean>(false);
+
+  //TODO: Validations, error handling - form
+
 
   ngOnInit() {
     this.initForm();
@@ -129,7 +134,7 @@ export class Register implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched();
+      alert('Please insert all required fields!')
       return;
     }
 
@@ -144,12 +149,17 @@ export class Register implements OnInit {
       address: `${formValue.street}, ${formValue.city}, ${formValue.state}, ${formValue.pincode}`,
       createdAt: new Date()
     };
+    this.isRegistering.set(true);
     this.userService.registerUserCall(payload).subscribe({
       next: (result: IRegisterResponse) => {
-        alert('User Registeration Successful!')
+        alert('User Registeration Successful! Please login in with your credentials.');
+        this.registerForm.reset();
+        this.isRegistering.set(false);
         this.router.navigateByUrl('/login');
       },
       error: (error: any) => {
+        this.registerForm.reset();
+        this.isRegistering.set(false);
         alert("Register API Failed!")
       }
     })

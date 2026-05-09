@@ -10,3 +10,8 @@ export interface IRegisterResponse {
   message: string,
   data: UserModel
 }
+
+export interface IApiResponseModel {
+  message: string,
+  data: any;
+}

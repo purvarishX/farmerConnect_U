@@ -122,7 +122,9 @@
 
 
                     <!-- Submit Button - Full Width -->
-                    <button type="submit" class="btn-submit-warm">Create My Account</button>
+                    <button type="submit" class="btn-submit-warm">
+                        {{ isRegistering() ? 'Creating Account...' : 'Create My Account'}}
+                    </button>
                     <div class="divider-warm"><span>Already have an account?</span></div>
                     <div class="text-center cursor-pointer"><a
                             style="color:var(--harvest-gold);font-weight:700;text-decoration:none;"

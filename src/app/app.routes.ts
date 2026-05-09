@@ -4,6 +4,8 @@ import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { Category } from './pages/category/category';
 import { authGuard } from './core/guards/auth-guard';
+import { Master } from './pages/master/master';
+import { Product } from './pages/product/product';
 
 export const routes: Routes = [
     {
@@ -25,8 +27,13 @@ export const routes: Routes = [
         component: Register,
     },
     {
-        path: 'category',
-        component: Category,
+        path: 'master',
+        component: Master,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'product',
+        component: Product,
         canActivate: [authGuard]
     }
 ];

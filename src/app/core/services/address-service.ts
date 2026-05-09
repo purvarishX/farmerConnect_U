@@ -12,11 +12,14 @@ export class AddressService {
   http = inject(HttpClient);
   addressApiUrl = environment.STATE_CITY_API_URL;
 
-  getStates(payload: any): Observable<any> {
+
+  //TODO: Replace any with response models
+
+  getStates(payload: { headers: {} }): Observable<any> {
     return this.http.get(`${this.addressApiUrl}`, payload.headers)
   }
 
-  getCities(payload: any): Observable<any> {
+  getCities(payload: { headers: {}, stateCode: '' }): Observable<any> {
     return this.http.get(`${this.addressApiUrl}/${payload.stateCode}/${GlobalConstant.API_ENDPOINTS.CITIES}`, payload.headers)
   }
 }
